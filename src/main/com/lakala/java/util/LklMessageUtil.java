@@ -25,11 +25,11 @@ public class LklMessageUtil {
         //1.获取该笔订单的对称密钥,32位
         String desKey = ToolsUtil.getDesKey(32);
         //公钥
-        String pubKey = LakalPayConfig.PUB_KEY;
+        String pubKey = LakalPayConfig.getPubKey();
         //私钥
-        String privKey = LakalPayConfig.PRIVATE_KEY;
+        String privKey = LakalPayConfig.getPrivateKey();
         //商户号
-        String merNo = LakalPayConfig.MERCHANT_NO;
+        String merNo = LakalPayConfig.getMerchantNo();
         //时间戳
         String timeStamp = param.get("ts");
 
@@ -64,7 +64,7 @@ public class LklMessageUtil {
         //得到mac签名
         macStr = DigestUtil.Encrypt(macStr, "SHA-1");
         String mac = ByteArrayUtil.byteArray2HexString(RSAUtil.encryptByPrivateKey(macStr.getBytes("GBK"), privKey));
-        ToolsUtil.storeMerKey(LakalPayConfig.MERCHANT_NO, desKey);
+        ToolsUtil.storeMerKey(LakalPayConfig.getMerchantNo(), desKey);
         param.clear();
         param.put("merId", merNo);
         param.put("payTypeId", payTypeId);
@@ -113,7 +113,7 @@ public class LklMessageUtil {
         String ver = (String) params.get("ver");
         String payTypeId = (String) params.get("payTypeId");
         //取得商户对称密钥，同商户发起交易时的密钥
-        String desKey = ToolsUtil.getMerKey(LakalPayConfig.MERCHANT_NO);
+        String desKey = ToolsUtil.getMerKey(LakalPayConfig.getMerchantNo());
 
         // 用请求方公钥验签（拼接时间戳、业务类型、“加密json1”做SHA1，用请求方公钥解密mac反hex的字节数组，比较是否一致）
         String macData = null;

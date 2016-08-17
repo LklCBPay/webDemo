@@ -194,8 +194,8 @@
                 class="remark">必填，参见接口文档中请求业务类型字段</label>
         </div>
         <div class="bizfield">
-            <label> 商户号：</label><input type="text" name="merId" placeholder="<%=LakalPayConfig.MERCHANT_NO%>"
-                                       value="<%=LakalPayConfig.MERCHANT_NO%>" required
+            <label> 商户号：</label><input type="text" name="merId" placeholder="<%=LakalPayConfig.getMerchantNo()%>"
+                                       value="<%=LakalPayConfig.getMerchantNo()%>" required
                                        aria-required="true"><label
                 class="remark">必填，商户在拉卡拉跨境开设的商户号</label>
         </div>

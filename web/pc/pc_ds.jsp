@@ -70,15 +70,6 @@
             height: auto;
         }
 
-        .side h1 {
-            color: gray;
-            width: auto;
-            margin: 0;
-            margin-left: 1em;
-            margin-right: 0.5em;
-            padding: 0;
-        }
-
         .container form {
             width: 80em;
             height: 100%;
@@ -143,27 +134,6 @@
             background-color: #00afef;
             color: #FFFFFF;
         }
-
-        .side h3 {
-            color: gray;
-            width: auto;
-            margin: 0;
-            margin-left: 5em;
-            margin-top: 1.5em;
-
-            -moz-transition: all 0.5s linear;
-            -webkit-transition: all 0.5s linear;
-            -o-transition: all 0.5s linear;
-            transition: all 0.1s linear;
-        }
-
-        .side h3:hover {
-            color: #00afef;
-        }
-
-        .side a {
-            text-decoration: none;
-        }
     </style>
 </head>
 <body>
@@ -194,8 +164,8 @@
                 class="remark">必填，参见接口文档中请求业务类型字段</label>
         </div>
         <div class="bizfield">
-            <label> 商户号：</label><input type="text" name="merId" placeholder="<%=LakalPayConfig.MERCHANT_NO%>"
-                                       value="<%=LakalPayConfig.MERCHANT_NO%>" required
+            <label> 商户号：</label><input type="text" name="merId" placeholder="<%=LakalPayConfig.getMerchantNo()%>"
+                                       value="<%=LakalPayConfig.getMerchantNo()%>" required
                                        aria-required="true"><label
                 class="remark">必填，商户在拉卡拉跨境开设的商户号</label>
         </div>

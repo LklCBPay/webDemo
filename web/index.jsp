@@ -15,8 +15,8 @@
 <style>
     html, body {
         width: 100%;
-        min-width: 1200px;
-        height: auto;
+        /*min-width: 1200px;*/
+        height: 100%;
         padding: 0;
         margin: 0;
         font-family: "微软雅黑";
@@ -59,7 +59,7 @@
 
     .menu {
         width: 32em;
-        height: auto;
+        height: 25em;
         margin: 4em auto;
 
     }
@@ -122,6 +122,26 @@
         line-height: 1.5em;
         color: gray;
     }
+
+    #env {
+        width: 8em;
+        line-height: 2em;
+        color: #00afef;
+        border-style: solid;
+        border-width: 1px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        -o-border-radius: 4px;
+        border-radius: 4px;
+        margin: 0 auto;
+        text-align: center;
+        font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", STHeiti, "WenQuanYi Micro Hei", SimSun, sans-serif;
+    }
+
+    #env:hover {
+        background-color: #00afef;
+        color: #FFFFFF;
+    }
 </style>
 <body>
 <div class="header">
@@ -158,6 +178,9 @@
             </p>
         </div>
     </div>
+    <a style="text-decoration: none;" href="env.jsp">
+        <div id="env"> 设置接入参数</div>
+    </a>
 </div>
 </body>
 </html>
