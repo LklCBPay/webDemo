@@ -70,13 +70,13 @@
     }
 
     .envOpt {
-        width: 60em;
+        width: 80em;
         height: 1.5em;
         margin: 0.5em auto;
     }
 
     .bizfield {
-        width: 60em;
+        width: 80em;
         height: auto;
         margin: 2em auto;
     }
@@ -84,6 +84,7 @@
     .keys {
         border: 1px solid rgb(0, 175, 236);
         margin: 0px;
+        width: 60em;
     }
 
     form div label {
