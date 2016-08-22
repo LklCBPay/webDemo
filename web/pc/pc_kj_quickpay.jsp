@@ -353,8 +353,8 @@
         </div>
         <div class="bizfield">
             <label> 后台通知地址：</label><input type="url" name="bgUrl"
-                                          value=""
-                                          placeholder="http://lakala.com">
+                                          value="http://testintl.lakala.com:8080/webDemo/returnNotify.jsp"
+                                          placeholder="http://商户网址/returnNotify.jsp">
             <label class="remark">商户接受拉卡拉异步支付结果的url。前台与后台通知地址，二者必选其一，可同时填写</label>
         </div>
         <div class="bizfield">
