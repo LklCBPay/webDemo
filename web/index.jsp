@@ -191,9 +191,11 @@
         #desc {
             margin: 5em auto 0;
         }
-        .item h1{
+
+        .item h1 {
             margin-top: 2em;
         }
+
         .item p {
             font-size: x-large;
         }
@@ -206,6 +208,14 @@
             background-color: #FFFFFF;
             color: #00afef;
         }
+    }
+
+    #down {
+        width: 7em;
+        margin: 1em auto 0;
+        display: block;
+        text-decoration: none;
+        color: #000000;
     }
 
     @media screen and (max-width: 320px) {
@@ -279,6 +289,7 @@
 </div>
 <div class="container">
     <span id="desc">请选择接入类型</span>
+    <a id="down" href="https://github.com/LklCBPay/webDemo" target="_blank">下载demo>>></a>
 
     <div class="menu">
         <div class="item pc">
