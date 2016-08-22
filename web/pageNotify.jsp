@@ -42,51 +42,52 @@
     <%
         String merId = (String) jsonMap.get("merId");
         //商户私钥
-        String privKey = LakalPayConfig.PRIVATE_KEY;
+        String privKey = LakalPayConfig.getPrivateKey();
         //公钥
-        String pubKey = LakalPayConfig.PUB_KEY;
+        String pubKey = LakalPayConfig.getPubKey();
         Map<String, String> resMap = new HashMap<String, String>();
 
         if (jsonMap.get("encData") != null) {
             resMap = LklMessageUtil.decryptReqData(jsonMap, pubKey, privKey);
+
+            String reqData = resMap.get("reqData");
+            Map<String, String> json = new Gson().fromJson(reqData, Map.class);
+            String payResult = json.get("payResult");
+            String payResultMsg = null;
+            if ("1".equals(payResult)) {
+                payResultMsg = "支付成功";
+            } else if ("2".equals(payResult)) {
+                payResultMsg = "支付失败";
+            } else if ("0".equals(payResult)) {
+                payResultMsg = "未支付";
+            }
+
+            out.print(" <tr>\n" +
+                    "        <td>支付结果：</td>\n" +
+                    "        <td>" + new String(responseMsg.getBytes("ISO-8859-1"), "utf-8") + "\n" +
+                    "        </td>\n" +
+                    "    </tr>");
+
+            out.print(" <tr>\n" +
+                    "        <td>retCode：</td>\n" +
+                    "        <td>" + new String(responseCode.getBytes("ISO-8859-1"), "utf-8") + "\n" +
+                    "        </td>\n" +
+                    "    </tr>");
+
+            out.print(" <tr>\n" +
+                    "        <td>retMsg：</td>\n" +
+                    "        <td>" + new String(responseMsg.getBytes("ISO-8859-1"), "utf-8") + "\n" +
+                    "        </td>\n" +
+                    "    </tr>");
         }
-        String reqData = resMap.get("reqData");
-        Map<String, String> json = new Gson().fromJson(reqData, Map.class);
-        String payResult = json.get("payResult");
-        String payResultMsg = null;
-        if ("1".equals(payResult)) {
-            payResultMsg = "支付成功";
-        } else if ("2".equals(payResult)) {
-            payResultMsg = "支付失败";
-        } else if ("0".equals(payResult)) {
-            payResultMsg = "未支付";
-        }
-
-        out.print(" <tr>\n" +
-                "        <td>支付结果：</td>\n" +
-                "        <td>" + new String(responseMsg.getBytes("ISO-8859-1"), "utf-8") + "\n" +
-                "        </td>\n" +
-                "    </tr>");
-
-        out.print(" <tr>\n" +
-                "        <td>retCode：</td>\n" +
-                "        <td>" + new String(responseCode.getBytes("ISO-8859-1"), "utf-8") + "\n" +
-                "        </td>\n" +
-                "    </tr>");
-
-        out.print(" <tr>\n" +
-                "        <td>retMsg：</td>\n" +
-                "        <td>" + new String(responseMsg.getBytes("ISO-8859-1"), "utf-8") + "\n" +
-                "        </td>\n" +
-                "    </tr>");
-
-        for (Map.Entry<String, String> entry : json.entrySet()) {
+        for (Map.Entry<String, String> entry : jsonMap.entrySet()) {
             out.print(" <tr>\n" +
                     "        <td>" + new String(entry.getKey().getBytes("ISO-8859-1"), "utf-8") + "</td>\n" +
                     "        <td>" + new String(entry.getValue().getBytes("ISO-8859-1"), "utf-8") + "\n" +
                     "        </td>\n" +
                     "    </tr>");
         }
+
     %>
 
 </table>

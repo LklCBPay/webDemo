@@ -11,6 +11,7 @@
 <head>
     <title>拉卡拉跨境支付参数配置</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta charset="utf-8">
 </head>
 <style>
@@ -122,6 +123,74 @@
     .submit:hover {
         background-color: #00afef;
         color: #FFFFFF;
+    }
+
+    @media screen and (max-width: 436px) {
+        .container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .container form {
+            width: 100%;
+            height: 100%;
+        }
+
+        form div label {
+            width: 10em;
+            text-align: left;
+        }
+
+        .envOpt {
+            width: 100%;
+        }
+
+        .bizfield {
+            width: 100%;
+        }
+
+        form div input {
+            width: 100%;
+        }
+
+        .keys {
+            width: 100%;
+        }
+
+    }
+
+    @media screen and (max-width: 320px) {
+        .container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .container form {
+            width: 100%;
+            height: 100%;
+        }
+
+        form div label {
+            width: 10em;
+            text-align: left;
+        }
+
+        .envOpt {
+            width: 100%;
+        }
+
+        .bizfield {
+            width: 100%;
+        }
+
+        form div input {
+            width: 100%;
+        }
+
+        .keys {
+            width: 100%;
+        }
+
     }
 </style>
 <body>

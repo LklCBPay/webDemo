@@ -12,10 +12,10 @@
     <title>移动终端</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <style>
         html, body {
             width: 100%;
-            min-width: 1200px;
             height: auto;
             padding: 0;
             margin: 0;
@@ -68,15 +68,6 @@
             margin-left: 6em;
             width: auto;
             height: auto;
-        }
-
-        .side h1 {
-            color: gray;
-            width: auto;
-            margin: 0;
-            margin-left: 1em;
-            margin-right: 0.5em;
-            padding: 0;
         }
 
         .container form {
@@ -144,25 +135,54 @@
             color: #FFFFFF;
         }
 
-        .side h3 {
-            color: gray;
-            width: auto;
-            margin: 0;
-            margin-left: 5em;
-            margin-top: 1.5em;
+        @media screen and (max-width: 436px) {
+            html, body {
+                width: 100%;
+                height: 100%;
+            }
 
-            -moz-transition: all 0.5s linear;
-            -webkit-transition: all 0.5s linear;
-            -o-transition: all 0.5s linear;
-            transition: all 0.1s linear;
-        }
+            .headerleft {
+                display: none;
+            }
 
-        .side h3:hover {
-            color: #00afef;
-        }
+            .container {
+                width: 100%;
+                height: 100%;
+                margin-bottom: 0em;
+                margin-left: 0em;
+            }
 
-        .side a {
-            text-decoration: none;
+            .container form {
+                width: 100%;
+                height: 100%;
+            }
+
+            .bizfield {
+                height: 5em;
+            }
+
+            form div label {
+                text-align: left;
+            }
+
+            form div input {
+                width: 100%;
+            }
+
+            .remark {
+                margin-left: 0em;
+            }
+
+            .submit {
+                margin-left: 0em;
+                margin-top: 0em;
+                background-color: #00afef;
+                color: #FFFFFF;
+            }
+
+            form div select {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -180,7 +200,7 @@
 <div class="container">
     <form action="../pay.jsp" method="post">
         <%--交易请求的uri--%>
-        <div class="bizfield">
+        <div class="bizfield" style="display: none">
             <input type="text" name="requestUri" hidden="hidden"
                    value="ppayGate/CrossBorderWebPay.do">
         </div>
@@ -200,14 +220,11 @@
                 class="remark">必填，商户在拉卡拉跨境开设的商户号</label>
         </div>
         <div class="bizfield">
-            <label> 支付方式：</label><input type="" name="payTypeId" placeholder="4" required aria-required="true" value="4"
-                                        list="paytypes">
-            <datalist id="paytypes">
-                <select>
-                    <option value="1">快捷</option>
-                    <option value="4">代收</option>
-                </select>
-            </datalist>
+            <label> 支付方式：</label><select id="payTypeId" name="payTypeId" placeholder="4" required aria-required="true"
+                                         value="4">
+            <option value="1">1-快捷</option>
+            <option value="4">4-代收</option>
+        </select>
             <label
                     class="remark">必填</label>
         </div>
@@ -239,29 +256,26 @@
         </div>
 
         <div class="bizfield">
-            <label> 订单币种：</label><input type="text" name="currency" value=""
-                                        placeholder="CNY"
-                                        required aria-required="true" list="currencyList">
-            <datalist id="currencyList">
-                <select>
-                    <option value="CNY">人民币</option>
-                    <option value="USD">美元</option>
-                    <option value="HKD">港币</option>
-                    <option value="EUR">欧元</option>
-                    <option value="JPY">日元</option>
-                    <option value="GBP">英镑</option>
-                    <option value="CHF">瑞士法郎</option>
-                    <option value="SGD">新加坡元</option>
-                    <option value="AUD">澳元</option>
-                    <option value="CAD">加元</option>
-                    <option value="KRW">韩元</option>
-                    <option value="MYR">马来西亚林吉特</option>
-                    <option value="NZD">新西兰</option>
-                    <option value="RUB">卢布</option>
-                    <option value="THB">泰铢</option>
-                    <option value="TWD">新台币</option>
-                </select>
-            </datalist>
+            <label> 订单币种：</label><select id="currency" name="currency" value=""
+                                         placeholder="CNY"
+                                         required aria-required="true">
+            <option value="CNY">CNY-人民币</option>
+            <option value="USD">USD-美元</option>
+            <option value="HKD">HKD-港币</option>
+            <option value="EUR">-EUR欧元</option>
+            <option value="JPY">JPY-日元</option>
+            <option value="GBP">GBP-英镑</option>
+            <option value="CHF">CHF-瑞士法郎</option>
+            <option value="SGD">SGD-新加坡元</option>
+            <option value="AUD">AUD-澳元</option>
+            <option value="CAD">CAD-加元</option>
+            <option value="KRW">KRW-韩元</option>
+            <option value="MYR">MYR-马来西亚林吉特</option>
+            <option value="NZD">NZD-新西兰</option>
+            <option value="RUB">RUB-卢布</option>
+            <option value="THB">THB-泰铢</option>
+            <option value="TWD">TWD-新台币</option>
+        </select>
             <label class="remark">必填，订单币种，境内为CNY。支持币种见LklCurrency.java</label>
         </div>
 
@@ -308,8 +322,8 @@
 
         <div class="bizfield">
             <label> 前台通知地址：</label><input type="url" name="pageUrl"
-                                          value=""
-                                          placeholder="http://lakala.com">
+                                          value="http://testintl.lakala.com:8080/webDemo/pageNotify.jsp"
+                                          placeholder="http://商户网址/pageNotify.jsp">
             <label class="remark">商户接受拉卡拉支付结果的url</label>
         </div>
         <div class="bizfield">
@@ -330,15 +344,12 @@
         </div>
 
         <div class="bizfield">
-            <label> 是否支持协议代扣：</label><input type="text" name="isDirectPay" value=""
-                                            placeholder="0"
-                                            required aria-required="true" list="ids">
-            <datalist id="ids">
-                <select>
-                    <option value="0">否</option>
-                    <option value="1">是</option>
-                </select>
-            </datalist>
+            <label> 是否支持协议代扣：</label><select id="isDirectPay" name="isDirectPay" value=""
+                                             placeholder="0"
+                                             required aria-required="true">
+            <option value="0">0-否</option>
+            <option value="1">1-是</option>
+        </select>
             <label class="remark">必填，支持协议代扣，则“商户客户会员ID”与“签约协议号”必传</label>
         </div>
         <div class="bizfield">
@@ -352,68 +363,56 @@
             <label class="remark"> 签约协议号，选择支持协议代扣时，该字段必传</label>
         </div>
         <div class="bizfield">
-            <label> 国检编号：</label><input type="text" name="aqsiqId" value=""
-                                        placeholder="0" list="gjs">
-            <datalist id="gjs">
-                <select>
-                    <option value="">空</option>
-                    <option value="0">不报国检</option>
-                    <option value="1">南沙国检</option>
-                </select>
-            </datalist>
+            <label> 国检编号：</label><select id="aqsiqId" name="aqsiqId" value="">
+
+            <option value="">空</option>
+            <option value="0">0-不报国检</option>
+            <option value="1">1-南沙国检</option>
+        </select>
+            <label class="remark"> 非必填</label>
+        </div>
+        <div class="bizfield">
+            <label> 报送海关：</label><select id="cuId" name="cuId">
+            <option value="">空</option>
+            <option value="0">0-不报关</option>
+            <option value="1">1-广州海关</option>
+            <option value="2">2-上海海关</option>
+            <option value="3">3-宁波海关</option>
+            <option value="4">4-北京海关</option>
+            <option value="5">5-杭州海关</option>
+            <option value="6">6-重庆海关</option>
+        </select>
             <label class="remark">非必填</label>
         </div>
         <div class="bizfield">
-            <label> 报送海关：</label><input type="text" name="cuId"
-                                        list="gj">
-            <datalist id="gj">
-                <select>
-                    <option value="0">不报关</option>
-                    <option value="1">广州海关</option>
-                    <option value="2">上海海关</option>
-                    <option value="3">宁波海关</option>
-                    <option value="4">北京海关</option>
-                    <option value="5">杭州海关</option>
-                    <option value="6">重庆海关</option>
-                </select>
-            </datalist>
-            <label class="remark">非必填</label>
-        </div>
-        <div class="bizfield">
-            <label> 业务类型：</label><input type="text" name="bizTypeCode" value=""
-                                        placeholder="0" list="bizTypeCodes">
-            <datalist id="bizTypeCodes">
-                <select>
-                    <option value="">请选择</option>
-                    <option value="I10">直购进口</option>
-                    <option value="I20">网购保税进口</option>
-                    <option value="E10">一般出口B2C</option>
-                    <option value="E20">一般出口B2B</option>
-                    <option value="E30">保税出口B2C</option>
-                    <option value="E40">保税出口B2B</option>
-                    <option value="E50">虚拟商品出口</option>
-                </select>
-            </datalist>
+            <label> 业务类型：</label><select id="bizTypeCode" name="bizTypeCode" value=""
+                                         placeholder="0">
+            <option value="">空</option>
+            <option value="I10">I10-直购进口</option>
+            <option value="I20">I20-网购保税进口</option>
+            <option value="E10">E10-一般出口B2C</option>
+            <option value="E20">E20-一般出口B2B</option>
+            <option value="E30">E30-保税出口B2C</option>
+            <option value="E40">E40-保税出口B2B</option>
+            <option value="E50">E50-虚拟商品出口</option>
+        </select>
             <label class="remark">若报送海关选择了重庆关，则必填</label>
         </div>
         <div class="bizfield">
-            <label> 购汇种类：</label><input type="text" name="buyForexKind" value=""
-                                        placeholder="0" list="buyForexKinds">
-            <datalist id="buyForexKinds">
-                <select>
-                    <option value="">空</option>
-                    <option value="0100">0100 货物贸易</option>
-                    <option value="0210">0210 运输</option>
-                    <option value="0221">0221 自费出境学习</option>
-                    <option value="0222">0222 因私旅游</option>
-                    <option value="0223">0223 公务及商务出国</option>
-                    <option value="0225">0225 旅游项下其他</option>
-                    <option value="0230">0230 金融和保险服务</option>
-                    <option value="0240">0240 专有权利使用费和特许费</option>
-                    <option value="0250">0250 咨询服务</option>
-                    <option value="0260">0260 其他服务</option>
-                </select>
-            </datalist>
+            <label> 购汇种类：</label><select id="buyForexKind" name="buyForexKind" value=""
+                                         placeholder="0">
+            <option value="">空</option>
+            <option value="0100">0100 货物贸易</option>
+            <option value="0210">0210 运输</option>
+            <option value="0221">0221 自费出境学习</option>
+            <option value="0222">0222 因私旅游</option>
+            <option value="0223">0223 公务及商务出国</option>
+            <option value="0225">0225 旅游项下其他</option>
+            <option value="0230">0230 金融和保险服务</option>
+            <option value="0240">0240 专有权利使用费和特许费</option>
+            <option value="0250">0250 咨询服务</option>
+            <option value="0260">0260 其他服务</option>
+        </select>
             <label class="remark">非必填</label>
         </div>
         <div class="bizfield">

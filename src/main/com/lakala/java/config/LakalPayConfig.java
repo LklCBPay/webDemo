@@ -2,7 +2,6 @@ package com.lakala.java.config;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
@@ -76,11 +75,16 @@ public class LakalPayConfig {
     }
 
     public static String getPrivateKey() {
-        String privateKey = ENV_CONFIG.get("privateKey");
-        if (null == privateKey || "".equals(privateKey)) {
-            privateKey = PRIVATE_KEY;
+        try {
+            lock.writeLock().lock();
+            String privateKey = ENV_CONFIG.get("privateKey");
+            if (null == privateKey || "".equals(privateKey)) {
+                privateKey = PRIVATE_KEY;
+            }
+            return privateKey;
+        } finally {
+            lock.writeLock().unlock();
         }
-        return privateKey;
     }
 
     public static void setPubKey(String pubKey) {
@@ -89,11 +93,17 @@ public class LakalPayConfig {
     }
 
     public static String getPubKey() {
-        String pubKey = ENV_CONFIG.get("pubKey");
-        if (null == pubKey || "".equals(pubKey)) {
-            pubKey = PUB_KEY;
+        try {
+            lock.writeLock().lock();
+            String pubKey = ENV_CONFIG.get("pubKey");
+            if (null == pubKey || "".equals(pubKey)) {
+                pubKey = PUB_KEY;
+            }
+            return pubKey;
+        } finally {
+            lock.writeLock().unlock();
         }
-        return pubKey;
+
     }
 
     /**

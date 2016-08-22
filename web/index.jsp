@@ -10,6 +10,7 @@
 <head>
     <title>拉卡拉跨境支付</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta charset="utf-8">
 </head>
 <style>
@@ -126,21 +127,148 @@
     #env {
         width: 8em;
         line-height: 2em;
-        color: #00afef;
-        border-style: solid;
-        border-width: 1px;
-        -moz-border-radius: 4px;
-        -webkit-border-radius: 4px;
-        -o-border-radius: 4px;
-        border-radius: 4px;
-        margin: 0 auto;
+        border-style: none;
+        margin: 0 auto 3em;
         text-align: center;
         font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", STHeiti, "WenQuanYi Micro Hei", SimSun, sans-serif;
     }
 
-    #env:hover {
+    #enva {
+        border-style: solid;
+        border-width: 1px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -o-border-radius: 5px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #00afef;
+        width: 100%;
+        display: block;
+    }
+
+    #enva:hover {
         background-color: #00afef;
         color: #FFFFFF;
+    }
+
+    @media screen and (max-width: 436px) {
+        .container {
+            height: 75em;
+            /*margin-bottom: 3em;*/
+        }
+
+        .menu {
+            width: 100%;
+            height: auto;
+            margin: 2em auto 0;
+
+        }
+
+        .item {
+            margin: 2em auto 2em;
+            border: 1px solid #00afec;
+            width: 80%;
+            height: auto;
+            text-align: center;
+            float: none;
+        }
+
+        .item a:hover {
+            color: gray;
+
+            -moz-transform: scale(1);
+            -webkit-transform: scale(1);
+            -o-transform: scale(1);
+            transform: scale(1);
+        }
+
+        .item:hover {
+            -moz-box-shadow: 0px 0px 0px #00afec;
+            -webkit-box-shadow: 0px 0px 0px #00afec;
+            box-shadow: 0px 0px 0px #00afec;
+        }
+
+        #desc {
+            margin: 5em auto 0;
+        }
+        .item h1{
+            margin-top: 2em;
+        }
+        .item p {
+            font-size: x-large;
+        }
+
+        #env {
+            margin: 0em auto;
+        }
+
+        #enva:hover {
+            background-color: #FFFFFF;
+            color: #00afef;
+        }
+    }
+
+    @media screen and (max-width: 320px) {
+        .container {
+            height: 60em;
+            /*margin-bottom: 3em;*/
+        }
+
+        .menu {
+            width: 100%;
+            height: auto;
+            margin: 2em auto 0;
+
+        }
+
+        .item a:hover {
+            color: gray;
+
+            -moz-transform: scale(1);
+            -webkit-transform: scale(1);
+            -o-transform: scale(1);
+            transform: scale(1);
+        }
+
+        .item:hover {
+            -moz-box-shadow: 0px 0px 0px #00afec;
+            -webkit-box-shadow: 0px 0px 0px #00afec;
+            box-shadow: 0px 0px 0px #00afec;
+        }
+
+        .item {
+            margin: 2em auto 2em;
+            border: 1px solid #00afec;
+            width: 80%;
+            height: auto;
+            text-align: center;
+            float: none;
+        }
+
+        .item h1 {
+            margin-top: 2em;
+        }
+
+        .item p {
+            margin: 3em auto 1em;
+        }
+
+        #desc {
+            margin: 5em auto 0;
+        }
+
+        .item p {
+            font-size: x-large;
+        }
+
+        #env {
+            margin: 0em auto;
+        }
+
+        #enva:hover {
+            background-color: #FFFFFF;
+            color: #00afef;
+        }
     }
 </style>
 <body>
@@ -178,9 +306,9 @@
             </p>
         </div>
     </div>
-    <a style="text-decoration: none;" href="env.jsp">
-        <div id="env"> 设置接入参数</div>
-    </a>
+
+    <div id="env"><a id="enva" href="env.jsp"> 设置接入参数</a></div>
+
 </div>
 </body>
 </html>
