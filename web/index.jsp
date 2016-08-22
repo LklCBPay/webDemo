@@ -211,7 +211,7 @@
     }
 
     #down {
-        width: 7em;
+        width: 9em;
         margin: 1em auto 0;
         display: block;
         text-decoration: none;
