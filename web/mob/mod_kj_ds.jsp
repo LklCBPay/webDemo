@@ -250,10 +250,9 @@
                 class="remark">必填，商户在拉卡拉跨境开设的商户号</label>
         </div>
         <div class="bizfield">
-            <label> 支付方式：</label><select id="payTypeId" name="payTypeId" placeholder="4" required aria-required="true"
-                                         value="4">
+            <label> 支付方式：</label><select id="payTypeId" name="payTypeId" placeholder="4" required aria-required="true">
             <option value="1">1-快捷</option>
-            <option value="4">4-代收</option>
+            <option value="4" selected>4-代收</option>
         </select>
             <label
                     class="remark">必填</label>
