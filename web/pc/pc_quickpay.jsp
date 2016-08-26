@@ -293,7 +293,7 @@
             <option value="CNY">CNY-人民币</option>
             <option value="USD">USD-美元</option>
             <option value="HKD">HKD-港币</option>
-            <option value="EUR">-EUR欧元</option>
+            <option value="EUR">EUR欧元</option>
             <option value="JPY">JPY-日元</option>
             <option value="GBP">GBP-英镑</option>
             <option value="CHF">CHF-瑞士法郎</option>
