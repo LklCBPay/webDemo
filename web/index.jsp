@@ -297,9 +297,9 @@
             <h1>PC终端接入</h1>
 
             <p>
-                <a href="pc/pc_quickpay.jsp">境内快捷</a>
+                <a href="pc/pc_quickpay.jsp">境内快捷/B2C</a>
                 <a href="pc/pc_ds.jsp">境内代收</a>
-                <a href="pc/pc_kj_quickpay.jsp">跨境快捷</a>
+                <a href="pc/pc_kj_quickpay.jsp">跨境快捷/B2C</a>
                 <a href="pc/pc_kj_ds.jsp">跨境代收</a>
             </p>
         </div>

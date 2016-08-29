@@ -198,6 +198,8 @@
 
             form div input {
                 width: 100%;
+                height: 2rem;
+                font-size: 1.5rem;
             }
 
             .remark {
@@ -254,6 +256,7 @@
             <label> 支付方式：</label><select id="payTypeId" name="payTypeId" placeholder="1" required aria-required="true"
                                          value="1">
             <option value="1">1-快捷</option>
+            <option value="3">3-B2C</option>
             <option value="4">4-代收</option>
         </select>
             <label
@@ -308,6 +311,18 @@
             <option value="TWD">TWD-新台币</option>
         </select>
             <label class="remark">必填，订单币种，境内为CNY。支持币种见LklCurrency.java</label>
+        </div>
+        <div class="bizfield">
+            <label>银行ID：</label><input type="text" name="bankId" value="">
+            <label class="remark">B2C支付时直接指定某银行支付，无需跳转拉卡拉页面</label>
+        </div>
+        <div class="bizfield">
+            <label>账户类型：</label><select id="accountType" name="accountType" value="">
+            <option value="">空</option>
+            <option value="1">1-对私借记卡</option>
+            <option value="2">2-对私贷记卡</option>
+        </select>
+            <label class="remark">非必填，填写银行ID后，则该项必填</label>
         </div>
 
         <div class="bizfield">
