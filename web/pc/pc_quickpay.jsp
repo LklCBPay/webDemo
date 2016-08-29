@@ -314,7 +314,7 @@
         </div>
         <div class="bizfield">
             <label>银行ID：</label><input type="text" name="bankId" value="">
-            <label class="remark">B2C支付时直接指定某银行支付，无需跳转拉卡拉页面</label>
+            <label class="remark">B2C支付时直接指定某银行支付，无需跳转拉卡拉页面。查询接口参见《拉卡拉跨境支付后台接入接口V3.8.docx》-通道银行列表接口</label>
         </div>
         <div class="bizfield">
             <label>账户类型：</label><select id="accountType" name="accountType" value="">
