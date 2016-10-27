@@ -219,16 +219,16 @@
 <body>
 <div class="header">
     <div class="left">
-        <a href="<%=request.getContextPath()%>"> <img src="<%=request.getContextPath()%>/img/logo.png"></a>
+        <a href="<%=request.getContextPath()%>"> <img src="<%=request.getContextPath()%>/imgapp/img/logo.png"></a>
     </div>
     <div class="headerleft"><h1>移动接入网关——</h1>
 
-        <h2>境内快捷</h2></div>
+        <h2>跨境代收</h2></div>
 
 </div>
 </body>
 <div class="container">
-    <form action="../pay.jsp" method="post" id="in_quick">
+    <form action="../pay.jsp" method="post">
         <%--交易请求的uri--%>
         <div class="bizfield" style="display: none">
             <input type="text" name="requestUri" hidden="hidden"
@@ -250,10 +250,9 @@
                 class="remark">必填，商户在拉卡拉跨境开设的商户号</label>
         </div>
         <div class="bizfield">
-            <label> 支付方式：</label><select id="payTypeId" name="payTypeId" placeholder="1" required aria-required="true"
-                                         value="1">
+            <label> 支付方式：</label><select id="payTypeId" name="payTypeId" placeholder="4" required aria-required="true">
             <option value="1">1-快捷</option>
-            <option value="4">4-代收</option>
+            <option value="4" selected>4-代收</option>
         </select>
             <label
                     class="remark">必填</label>
@@ -316,7 +315,12 @@
                                         pattern="^(([1-9]\d{0,9})|0)(\.\d{1,2})">
             <label class="remark">必填，订单金额，单位元，保留小数点后两位</label>
         </div>
-
+        <div class="bizfield">
+            <label> 主收款方应收金额：</label><input type="text" name="payeeAmount" value="1.00"
+                                            required aria-required="true"
+                                            pattern="^(([1-9]\d{0,9})|0)(\.\d{1,2})" readonly>
+            <label class="remark">必填，不能大于订单金额</label>
+        </div>
         <div class="bizfield">
             <label> 订单概要：</label><input type="text" name="orderSummary" value="">
             <label class="remark">字符串，不超过256位</label>
@@ -395,6 +399,60 @@
             <option value="1">1-南沙国检</option>
         </select>
             <label class="remark"> 非必填</label>
+        </div>
+        <div class="bizfield">
+            <label> 报送海关：</label><select id="cuId" name="cuId">
+            <option value="">空</option>
+            <option value="0">0-不报关</option>
+            <option value="1">1-广州海关</option>
+            <option value="2">2-上海海关</option>
+            <option value="3">3-宁波海关</option>
+            <option value="4">4-北京海关</option>
+            <option value="5">5-杭州海关</option>
+            <option value="6">6-重庆海关</option>
+        </select>
+            <label class="remark">非必填</label>
+        </div>
+        <div class="bizfield">
+            <label> 业务类型：</label><select id="bizTypeCode" name="bizTypeCode" value=""
+                                         placeholder="0">
+            <option value="">空</option>
+            <option value="I10">I10-直购进口</option>
+            <option value="I20">I20-网购保税进口</option>
+            <option value="E10">E10-一般出口B2C</option>
+            <option value="E20">E20-一般出口B2B</option>
+            <option value="E30">E30-保税出口B2C</option>
+            <option value="E40">E40-保税出口B2B</option>
+            <option value="E50">E50-虚拟商品出口</option>
+        </select>
+            <label class="remark">若报送海关选择了重庆关，则必填</label>
+        </div>
+        <div class="bizfield">
+            <label> 购汇种类：</label><select id="buyForexKind" name="buyForexKind" value=""
+                                         placeholder="0">
+            <option value="">空</option>
+            <option value="0100">0100 货物贸易</option>
+            <option value="0210">0210 运输</option>
+            <option value="0221">0221 自费出境学习</option>
+            <option value="0222">0222 因私旅游</option>
+            <option value="0223">0223 公务及商务出国</option>
+            <option value="0225">0225 旅游项下其他</option>
+            <option value="0230">0230 金融和保险服务</option>
+            <option value="0240">0240 专有权利使用费和特许费</option>
+            <option value="0250">0250 咨询服务</option>
+            <option value="0260">0260 其他服务</option>
+        </select>
+            <label class="remark">非必填</label>
+        </div>
+        <div class="bizfield">
+            <label> 商品货款金额：</label><input type="text" name="goodsFee" value="0.00"
+                                          placeholder="0" pattern="^(([1-9]\d{0,9})|0)(\.\d{1,2})">
+            <label class="remark">若报送海关选择了重庆关，则必填</label>
+        </div>
+        <div class="bizfield">
+            <label> 税款金额：</label><input type="text" name="taxFee" value="0.00"
+                                        placeholder="0" pattern="^(([1-9]\d{0,9})|0)(\.\d{1,2})">
+            <label class="remark">若报送海关选择了重庆关，则必填</label>
         </div>
         <div class="bizfield">
             <input class="submit" type="submit" value="确认支付">

@@ -9,7 +9,7 @@
 <%@ page import="com.lakala.java.util.DateUtil" %>
 <html>
 <head>
-    <title>PC终端</title>
+    <title>移动终端</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -68,15 +68,6 @@
             margin-left: 6em;
             width: auto;
             height: auto;
-        }
-
-        .side h1 {
-            color: gray;
-            width: auto;
-            margin: 0;
-            margin-left: 1em;
-            margin-right: 0.5em;
-            padding: 0;
         }
 
         .container form {
@@ -144,27 +135,6 @@
             color: #FFFFFF;
         }
 
-        .side h3 {
-            color: gray;
-            width: auto;
-            margin: 0;
-            margin-left: 5em;
-            margin-top: 1.5em;
-
-            -moz-transition: all 0.5s linear;
-            -webkit-transition: all 0.5s linear;
-            -o-transition: all 0.5s linear;
-            transition: all 0.1s linear;
-        }
-
-        .side h3:hover {
-            color: #00afef;
-        }
-
-        .side a {
-            text-decoration: none;
-        }
-
         @media screen and (max-width: 436px) {
             html, body {
                 width: 100%;
@@ -197,8 +167,6 @@
 
             form div input {
                 width: 100%;
-                height: 2rem;
-                font-size: 1.5rem;
             }
 
             .remark {
@@ -221,18 +189,18 @@
 <body>
 <div class="header">
     <div class="left">
-        <a href="<%=request.getContextPath()%>"> <img src="<%=request.getContextPath()%>/img/logo.png"></a>
+        <a href="<%=request.getContextPath()%>"> <img src="<%=request.getContextPath()%>/imgapp/img/logo.png"></a>
     </div>
-    <div class="headerleft"><h1>PC接入网关——</h1>
+    <div class="headerleft"><h1>移动接入网关——</h1>
 
-        <h2>跨境快捷</h2></div>
+        <h2>跨境代收</h2></div>
 
 </div>
 </body>
 <div class="container">
     <form action="../pay.jsp" method="post">
         <%--交易请求的uri--%>
-        <div class="bizfield" style="display: none;">
+        <div class="bizfield" style="display: none">
             <input type="text" name="requestUri" hidden="hidden"
                    value="ppayGate/CrossBorderWebPay.do">
         </div>
@@ -252,10 +220,9 @@
                 class="remark">必填，商户在拉卡拉跨境开设的商户号</label>
         </div>
         <div class="bizfield">
-            <label> 支付方式：</label><select id="payTypeId" name="payTypeId" placeholder="1" required aria-required="true"
-                                         value="1">
+            <label> 支付方式：</label><select id="payTypeId" name="payTypeId" placeholder="4" required aria-required="true">
             <option value="1">1-快捷</option>
-            <option value="4">4-代收</option>
+            <option value="4" selected>4-代收</option>
         </select>
             <label
                     class="remark">必填</label>
@@ -310,34 +277,7 @@
         </select>
             <label class="remark">必填，订单币种，境内为CNY。支持币种见LklCurrency.java</label>
         </div>
-        <div class="bizfield">
-            <label>银行ID：</label><input type="text" name="bankId" value="">
-            <label class="remark">B2C支付时直接指定某银行支付，无需跳转拉卡拉页面。查询接口参见《拉卡拉跨境支付后台接入接口V3.8.docx》-通道银行列表接口</label>
-        </div>
-        <div class="bizfield">
-            <label>账户类型：</label><select id="accountType" name="accountType" value="">
-            <option value="">空</option>
-            <option value="1">1-对私借记卡</option>
-            <option value="2">2-对私贷记卡</option>
-        </select>
-            <label class="remark">非必填，填写银行ID后，则该项必填</label>
-        </div>
-        <div class="bizfield">
-            <label> 账户名 ：</label><input type="text" name="accountName" value="">
-            <label class="remark">非必填，B2C跨境支付时需填写，支付银行卡的账户名</label>
-        </div>
 
-        <div class="bizfield">
-            <label>证件类型：</label><select id="certType" name="certType" value="">
-            <option value="">空</option>
-            <option value="01">01-身份证</option>
-        </select>
-            <label class="remark">非必填，B2C跨境支付时需填写，目前支持01-身份证</label>
-        </div>
-        <div class="bizfield">
-            <label> 证件号 ：</label><input type="text" name="clientId" value="">
-            <label class="remark">非必填，B2C跨境支付时需填写</label>
-        </div>
         <div class="bizfield">
             <label> 订单金额：</label><input type="text" name="orderAmount" value=""
                                         placeholder="123.22"
@@ -345,7 +285,12 @@
                                         pattern="^(([1-9]\d{0,9})|0)(\.\d{1,2})">
             <label class="remark">必填，订单金额，单位元，保留小数点后两位</label>
         </div>
-
+        <div class="bizfield">
+            <label> 主收款方应收金额：</label><input type="text" name="payeeAmount" value="1.00"
+                                            required aria-required="true"
+                                            pattern="^(([1-9]\d{0,9})|0)(\.\d{1,2})" readonly>
+            <label class="remark">必填，不能大于订单金额</label>
+        </div>
         <div class="bizfield">
             <label> 订单概要：</label><input type="text" name="orderSummary" value="">
             <label class="remark">字符串，不超过256位</label>
@@ -453,17 +398,6 @@
             <label class="remark">若报送海关选择了重庆关，则必填</label>
         </div>
         <div class="bizfield">
-            <label> 商品货款金额：</label><input type="text" name="goodsFee" value="0.00"
-                                          placeholder="0" pattern="^(([1-9]\d{0,9})|0)(\.\d{1,2})">
-            <label class="remark">若报送海关选择了重庆关，则必填</label>
-        </div>
-        <div class="bizfield">
-            <label> 税款金额：</label><input type="text" name="taxFee" value="0.00"
-                                        placeholder="0" pattern="^(([1-9]\d{0,9})|0)(\.\d{1,2})">
-            <label class="remark">若报送海关选择了重庆关，则必填</label>
-        </div>
-
-        <div class="bizfield">
             <label> 购汇种类：</label><select id="buyForexKind" name="buyForexKind" value=""
                                          placeholder="0">
             <option value="">空</option>
@@ -479,6 +413,16 @@
             <option value="0260">0260 其他服务</option>
         </select>
             <label class="remark">非必填</label>
+        </div>
+        <div class="bizfield">
+            <label> 商品货款金额：</label><input type="text" name="goodsFee" value="0.00"
+                                          placeholder="0" pattern="^(([1-9]\d{0,9})|0)(\.\d{1,2})">
+            <label class="remark">若报送海关选择了重庆关，则必填</label>
+        </div>
+        <div class="bizfield">
+            <label> 税款金额：</label><input type="text" name="taxFee" value="0.00"
+                                        placeholder="0" pattern="^(([1-9]\d{0,9})|0)(\.\d{1,2})">
+            <label class="remark">若报送海关选择了重庆关，则必填</label>
         </div>
         <div class="bizfield">
             <input class="submit" type="submit" value="确认支付">

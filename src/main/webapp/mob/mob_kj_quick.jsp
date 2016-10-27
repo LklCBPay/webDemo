@@ -219,7 +219,7 @@
 <body>
 <div class="header">
     <div class="left">
-        <a href="<%=request.getContextPath()%>"> <img src="<%=request.getContextPath()%>/img/logo.png"></a>
+        <a href="<%=request.getContextPath()%>"> <img src="<%=request.getContextPath()%>/imgapp/img/logo.png"></a>
     </div>
     <div class="headerleft"><h1>移动接入网关——</h1>
 

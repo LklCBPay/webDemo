@@ -16,6 +16,7 @@
     <style>
         html, body {
             width: 100%;
+            /*min-width: 1200px;*/
             height: auto;
             padding: 0;
             margin: 0;
@@ -68,6 +69,15 @@
             margin-left: 6em;
             width: auto;
             height: auto;
+        }
+
+        .side h1 {
+            color: gray;
+            width: auto;
+            margin: 0;
+            margin-left: 1em;
+            margin-right: 0.5em;
+            padding: 0;
         }
 
         .container form {
@@ -135,6 +145,27 @@
             color: #FFFFFF;
         }
 
+        .side h3 {
+            color: gray;
+            width: auto;
+            margin: 0;
+            margin-left: 5em;
+            margin-top: 1.5em;
+
+            -moz-transition: all 0.5s linear;
+            -webkit-transition: all 0.5s linear;
+            -o-transition: all 0.5s linear;
+            transition: all 0.1s linear;
+        }
+
+        .side h3:hover {
+            color: #00afef;
+        }
+
+        .side a {
+            text-decoration: none;
+        }
+
         @media screen and (max-width: 436px) {
             html, body {
                 width: 100%;
@@ -167,6 +198,8 @@
 
             form div input {
                 width: 100%;
+                height: 2rem;
+                font-size: 1.5rem;
             }
 
             .remark {
@@ -189,18 +222,18 @@
 <body>
 <div class="header">
     <div class="left">
-        <a href="<%=request.getContextPath()%>"> <img src="<%=request.getContextPath()%>/img/logo.png"></a>
+        <a href="<%=request.getContextPath()%>"> <img src="<%=request.getContextPath()%>/imgapp/img/logo.png"></a>
     </div>
     <div class="headerleft"><h1>PC接入网关——</h1>
 
-        <h2>境内代收</h2></div>
+        <h2>境内快捷</h2></div>
 
 </div>
 </body>
 <div class="container">
-    <form action="../pay.jsp" method="post">
+    <form action="../pay.jsp" method="post" id="in_quick">
         <%--交易请求的uri--%>
-        <div class="bizfield" style="display: none">
+        <div class="bizfield" style="display: none;">
             <input type="text" name="requestUri" hidden="hidden"
                    value="ppayGate/CrossBorderWebPay.do">
         </div>
@@ -220,16 +253,18 @@
                 class="remark">必填，商户在拉卡拉跨境开设的商户号</label>
         </div>
         <div class="bizfield">
-            <label> 支付方式：</label><select id="payTypeId" name="payTypeId" placeholder="4" required aria-required="true">
+            <label> 支付方式：</label><select id="payTypeId" name="payTypeId" placeholder="1" required aria-required="true"
+                                         value="1">
             <option value="1">1-快捷</option>
-            <option value="4" selected>4-代收</option>
+            <option value="3">3-B2C</option>
+            <option value="4">4-代收</option>
         </select>
             <label
                     class="remark">必填</label>
         </div>
         <div class="bizfield">
             <label> 跨境业务类型：</label>
-            <select id="busiRange" name="bizCode" required aria-required="true">
+            <select id="busiRange" name="bizCode">
                 <option value="121010">121010 货物贸易</option>
                 <option value="222024">222024 航空机票</option>
                 <option value="223022">223022 留学教育</option>
@@ -238,7 +273,7 @@
                 <option value="223029">223029 酒店住宿</option>
                 <option value="228025">228025 国际展览</option>
             </select>
-            <label class="remark">根据商户需求自行选择</label>
+            <label class="remark">根据商户需求自行选择，境内交易可不设置该值</label>
         </div>
 
         <div class="bizfield">
@@ -277,6 +312,18 @@
         </select>
             <label class="remark">必填，订单币种，境内为CNY。支持币种见LklCurrency.java</label>
         </div>
+        <div class="bizfield">
+            <label>银行ID：</label><input type="text" name="bankId" value="">
+            <label class="remark">B2C支付时直接指定某银行支付，无需跳转拉卡拉页面。查询接口参见《拉卡拉跨境支付后台接入接口V3.8.docx》-通道银行列表接口</label>
+        </div>
+        <div class="bizfield">
+            <label>账户类型：</label><select id="accountType" name="accountType" value="">
+            <option value="">空</option>
+            <option value="1">1-对私借记卡</option>
+            <option value="2">2-对私贷记卡</option>
+        </select>
+            <label class="remark">非必填，填写银行ID后，则该项必填</label>
+        </div>
 
         <div class="bizfield">
             <label> 订单金额：</label><input type="text" name="orderAmount" value=""
@@ -285,12 +332,7 @@
                                         pattern="^(([1-9]\d{0,9})|0)(\.\d{1,2})">
             <label class="remark">必填，订单金额，单位元，保留小数点后两位</label>
         </div>
-        <div class="bizfield">
-            <label> 主收款方应收金额：</label><input type="text" name="payeeAmount" value="1.00"
-                                            required aria-required="true"
-                                            pattern="^(([1-9]\d{0,9})|0)(\.\d{1,2})" readonly>
-            <label class="remark">必填，不能大于订单金额</label>
-        </div>
+
         <div class="bizfield">
             <label> 订单概要：</label><input type="text" name="orderSummary" value="">
             <label class="remark">字符串，不超过256位</label>
