@@ -25,14 +25,14 @@ public class ToolsUtil {
      * @return
      */
     public static String getDesKey(int length) {
-        String radStr = "w0eA*1l&Bht3oCz^2p-D=n45%Ev8F6+Gg$9jHxdI7Ev8F6+Gg$9jHxdI\7Jc8KkLrMyaNq@mOsP#QR/!STbUVuWXfYiZ~w0eA*1l&Bht3oCz^2Jc8KkLrMyaNq@mOsP#QR!STbUVuWXfYiZ~w0eA*1l&Bht3oCz^2p-D=n45%ÍÍp-D=n45%Ev8F6+Gg$9jHxdI7Jc8KkLrMyaNq@mOsP#QR!STbUVuWXfYiZ~";
+        String radStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         StringBuffer generateRandStr = new StringBuffer();
         Random rand = new Random();
         for (int i = 0; i < length; i++) {
-            int randNum = rand.nextInt(radStr.length());
+            int randNum = rand.nextInt(36);
             generateRandStr.append(radStr.substring(randNum, randNum + 1));
         }
-        return generateRandStr.toString();
+        return generateRandStr + "";
     }
 
     /**
