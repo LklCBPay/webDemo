@@ -112,7 +112,7 @@
     }
     if (null != customNumberId && !"".equals(customNumberId)) {
         customNumberId = new String(customNumberId.getBytes("ISO-8859-1"), "utf-8");
-        paraMap.put("customNumberId", "N/A");
+        paraMap.put("customNumberId", customNumberId);
     }
 
     out.println(LklMessageUtil.submit(paraMap, request.getParameter("requestUri")));

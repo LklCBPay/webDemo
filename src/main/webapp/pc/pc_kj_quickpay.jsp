@@ -347,11 +347,11 @@
         </div>
 
         <div class="bizfield">
-            <label> 订单概要：</label><input type="text" name="orderSummary" value="">
+            <label> 订单概要：</label><input type="text" name="orderSummary" value="" required aria-required="true">
             <label class="remark">必填.商品种类-订单信息。商品种类为：国际展览,酒店住宿,留学教育,货物贸易,航空机票,其他；</label>
         </div>
         <div class="bizfield">
-            <label> 商户会员ID：</label><input type="text" name="customNumberId" value="NA">
+            <label> 商户会员ID：</label><input type="text" name="customNumberId" value="NA" required aria-required="true">
             <label class="remark">必填 无会员填写“NA”</label>
         </div>
         <div class="bizfield">
