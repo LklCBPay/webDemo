@@ -291,10 +291,14 @@
                                             pattern="^(([1-9]\d{0,9})|0)(\.\d{1,2})" readonly>
             <label class="remark">必填，不能大于订单金额</label>
         </div>
-        <div class="bizfield">
-            <label> 订单概要：</label><input type="text" name="orderSummary" value="">
-            <label class="remark">字符串，不超过256位</label>
-        </div>
+            <div class="bizfield">
+                <label> 订单概要：</label><input type="text" name="orderSummary" value="">
+                <label class="remark">字符串，不超过256位,必填</label>
+            </div>
+            <div class="bizfield">
+                <label> 商户会员ID：</label><input type="text" name="customNumberId" value="NA">
+                <label class="remark">必填 无会员填写“NA”</label>
+            </div>
         <div class="bizfield">
             <label> 订单日期：</label><input type="text" name="orderTime"
                                         value=""

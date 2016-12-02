@@ -38,6 +38,7 @@
     String goodsFee = request.getParameter("goodsFee");
     String taxFee = request.getParameter("taxFee");
     String buyForexKind = request.getParameter("buyForexKind");
+    String customNumberId = request.getParameter("customNumberId");
 
 
     Map<String, String> paraMap = new HashMap<String, String>();
@@ -108,6 +109,10 @@
     if (null != buyForexKind && !"".equals(buyForexKind)) {
         buyForexKind = new String(buyForexKind.getBytes("ISO-8859-1"), "utf-8");
         paraMap.put("buyForexKind", buyForexKind);
+    }
+    if (null != customNumberId && !"".equals(customNumberId)) {
+        customNumberId = new String(customNumberId.getBytes("ISO-8859-1"), "utf-8");
+        paraMap.put("customNumberId", "N/A");
     }
 
     out.println(LklMessageUtil.submit(paraMap, request.getParameter("requestUri")));
