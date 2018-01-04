@@ -106,7 +106,7 @@ public class LklMessageUtil {
         String retCode = (String) params.get("retCode");
         String retMsg = (String) params.get("retMsg");
         if (null != retMsg) {
-            retMsg = new String(retMsg.getBytes("ISO-8859-1"), "utf-8");
+            retMsg = new String(retMsg.getBytes("ISO-8859-1"), "GBK");
         }
         String ts = (String) params.get("ts");
         String reqType = (String) params.get("reqType");
